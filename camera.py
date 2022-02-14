@@ -1,7 +1,6 @@
 import threading
 import binascii
 from time import sleep
-from utils import base64_to_pil_image, pil_image_to_base64
 
 from flask import Flask, render_template, Response, request, jsonify
 from flask_socketio import SocketIO

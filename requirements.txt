@@ -1,5 +1,3 @@
--f https://download.pytorch.org/whl/torch_stable.html
-
 click
 enum-compat
 enum34
@@ -16,13 +14,12 @@ MarkupSafe
 numpy
 olefile
 opencv-python
-Pillow
 python-engineio==3.14.2
 python-socketio==4.6.1
 redis
 six
 Werkzeug
 
-torch==1.8.1+cpu 
-torchvision==0.9.1+cpu
 ipython
+
+sklearn

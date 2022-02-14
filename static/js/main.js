@@ -1,9 +1,11 @@
 $(document).ready(function(){
   let namespace = "/test";
-  let video = document.querySelector("#videoElement");
-  let canvas = document.querySelector("#canvasElement");
-  let ctx = canvas.getContext('2d');
-
+  // let video = document.querySelector("#videoElement");
+  // let canvas = document.querySelector("#canvasElement");
+  // let ctx = canvas.getContext('2d');
+  let userInput = document.querySelector("#userInput");
+  let submitButton = document.querySelector("#submit")
+  submitButton.onclick = function() {sendInput()};
   var localMediaStream = null;
 
   var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
@@ -13,10 +15,10 @@ $(document).ready(function(){
       return;
     }
 
-    ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 300, 150);
+    // ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 300, 150);
 
-    let dataURL = canvas.toDataURL('image/jpeg');
-    socket.emit('input image', dataURL);
+    // let dataURL = canvas.toDataURL('image/jpeg');
+    // socket.emit('input image', dataURL);
   }
 
   socket.on('connect', function() {
@@ -29,27 +31,42 @@ $(document).ready(function(){
     
     var tempp = '/video_feed/'.concat(userID);
     console.log(tempp);  
-    console.log(imageElement.src);
-    imageElement.src = (imageElement.src).concat(tempp)
-    console.log(imageElement.src);
+    // console.log(imageElement.src);
+    // imageElement.src = (imageElement.src).concat(tempp)
+    // console.log(imageElement.src);
+
   });
+
+  socket.on('classified', function(prediction){
+    console.log("Text classified!");
+    var result = document.getElementById("result");
+    result.innerHTML = "Predicted: " + prediction;;  
+  });
+  
 
   var constraints = {
-    video: {
-      width: { min: 640 },
-      height: { min: 480 }
-    }
+    // video: {
+    //   width: { min: 640 },
+    //   height: { min: 480 }
+    // }
   };
 
-  navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
-    video.srcObject = stream;
-    localMediaStream = stream;
+  // navigator.mediaDevices.getUserMedia(constraints).then(function(stream) {
+  //   video.srcObject = stream;
+  //   localMediaStream = stream;
 
-    setInterval(function () {
-      sendSnapshot();
-    }, 500);
-  }).catch(function(error) {
-    console.log(error);
-  });
+  //   setInterval(function () {
+  //     sendSnapshot();
+  //   }, 500);
+  // }).catch(function(error) {
+  //   console.log(error);
+  // });
+
+
+
+  function sendInput() {
+    socket.emit('input image', userInput.value);
+  }
+
 });
 

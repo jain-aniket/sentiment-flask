@@ -3,8 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta content="FER Program to Predict Emotion" name="description">
-        <title>Facial Emotion Recognition</title>
-        <h2 style="font-family: Tahoma">Facial Emotion Recognition</h2>
+        <title>Sentiment Analysis</title>
+        <h2 style="font-family: Tahoma">Sentiment Analysis</h2>
         <style>
          #container {
              margin: 0px auto;
@@ -30,18 +30,28 @@
         </style>
     </head>
     <body>
-        <div id="container">
+        <!-- <div id="container">
             <video autoplay="true" id="videoElement">
             </video>
             <img id="imageElement" src="{{ url_for('video_feed') }}">
             <canvas id="canvasElement"></canvas>
+        </div> -->
+
+
+        <label for="userInput">Enter text to be evaluated:</label>
+        <input type="text" id="userInput" name="userInput"><br><br>
+        <input type="submit" value="Submit" id = "submit">
+        <br><br>
+        <div id="result">
+            AAAAAA
         </div>
+
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
         <h4 style="font-family: Tahoma">Project by Aniket Jain</h4>
         <br>
-        <h4><a style="font-family: Tahoma" href="https://github.com/LeMuffinMan/attentiveness-flask/">Github</a></h4>
+        <h4><a style="font-family: Tahoma" href="https://github.com/jain-aniket/sentiment-flask">Github</a></h4>
     </body>
 </html>
