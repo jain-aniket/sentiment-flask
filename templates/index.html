@@ -4,54 +4,211 @@
         <meta charset="utf-8">
         <meta content="FER Program to Predict Emotion" name="description">
         <title>Sentiment Analysis</title>
-        <h2 style="font-family: Tahoma">Sentiment Analysis</h2>
+        
         <style>
-         #container {
-             margin: 0px auto;
-             border: 10px rgb(0, 0, 0) solid;
-         }
-         #videoElement {
-             width: 640px;
-             height: 480px;
-             background-color: #666;
-         }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@300&display=swap');
+        #container {
+            margin: 0px auto;
+            border: 10px rgb(0, 0, 0) solid;
+        }
 
-         #imageElement {
-             width: 640px;
-             height: 480px;
-             background-color: #666;
-         }
+        #imageElement {
+           width: 640px;
+            height: 480px;
+            background-color: #666;
+        }
 
-         #canvasElement {
-             width: 640px;
-             height: 480px;
-             display: none;
-         }
+        body {
+            background-color: rgb(207, 229, 248);
+            font-family: 'Noto Serif Display', serif;
+        }
+
+        .content{
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h1{
+            font-family: Tahoma;
+            font-size: 75px;
+            font-family: 'Noto Serif Display', serif;
+        }
+
+
+        /* Trying to stylize the box from here onwards */
+
+        /* Video Explanation - https://youtu.be/3AK3vspZvvM */
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        .custom-field {
+            position: relative;
+            font-size: 14px;
+            border-top: 20px solid transparent;
+            margin-bottom: 5px;
+            --field-padding: 12px;
+        }
+
+        .custom-field input {
+            border: none;
+            -webkit-appearance: none;
+            -ms-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: #f2f2f2;
+            padding: var(--field-padding);
+            border-radius: 3px;
+            width: 500px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .custom-field .placeholder {
+            position: absolute;
+            left: var(--field-padding);
+            width: calc(100% - (var(--field-padding) * 2));
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            top: 22px;
+            line-height: 100%;
+            transform: translateY(-50%);
+            color: #aaa;
+            transition: 
+                top 0.3s ease,
+                color 0.3s ease,
+                font-size 0.3s ease;
+        }
+
+        .custom-field input.dirty + .placeholder,
+        .custom-field input:focus + .placeholder,
+        .custom-field input:not(:placeholder-shown) + .placeholder {
+            top: -10px;
+            font-size: 10px;
+            color: #222;
+        }
+
+        /* THREE */
+        .custom-field.three {
+            --draw-duration: 0.1s;
+            --draw-color: #222;
+            --draw-line-width: 2px;
+            --draw-easing: linear;
+        }
+
+        .custom-field.three .border {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform: none;
+            display: flex;
+            align-items: center;
+            padding-left: 12px;
+            border-radius: 3px;
+        }
+
+        .custom-field.three .border::after, 
+        .custom-field.three .border::before {
+            content: "";
+            width: 0;
+            height: 0;
+            display: inline-block;
+            position: absolute;
+            border-radius: 3px;
+        }
+
+        .custom-field.three .border::before {
+            left: 0;
+            bottom: 0;
+            border-right: 0px solid var(--draw-color);
+            border-bottom: 0px solid var(--draw-color);
+            transition: 
+                border 0s linear calc(var(--draw-duration) * 4),
+                height var(--draw-duration) var(--draw-easing) calc(var(--draw-duration) * 2),
+                width var(--draw-duration) var(--draw-easing) calc(var(--draw-duration) * 3);
+        }
+
+        .custom-field.three .border::after {
+            right: 0;
+            top: 0;
+            border-left: 0px solid var(--draw-color);
+            border-top: 0px solid var(--draw-color);
+            transition: 
+                border 0s linear calc(var(--draw-duration) * 2),
+                height var(--draw-duration) var(--draw-easing),
+                width var(--draw-duration) var(--draw-easing) var(--draw-duration);
+        }
+
+        .custom-field.three input:focus ~ .border::before,
+        .custom-field.three input:not(:placeholder-shown) ~ .border::before,
+        .custom-field.three input.dirty ~ .border::before,
+        .custom-field.three input:focus ~ .border::after,
+        .custom-field.three input:not(:placeholder-shown) ~ .border::after,
+        .custom-field.three input.dirty ~ .border::after {
+            width: 100%;
+            height: 100%;
+            border-width: var(--draw-line-width);
+        }
+
+        .custom-field.three input:not(:placeholder-shown) ~ .border::before,
+        .custom-field.three input.dirty ~ .border::before,
+        .custom-field.three input:focus ~ .border::before {
+            transition-delay: 0s, var(--draw-duration), 0s;
+        }
+
+        .custom-field.three input:not(:placeholder-shown) ~ .border::after,
+        .custom-field.three input.dirty ~ .border::after,
+        .custom-field.three input:focus ~ .border::after {
+            transition-delay: 
+                calc(var(--draw-duration) * 2), 
+                calc(var(--draw-duration) * 3), 
+                calc(var(--draw-duration) * 2);
+        }
+
         </style>
     </head>
+    
     <body>
-        <!-- <div id="container">
-            <video autoplay="true" id="videoElement">
-            </video>
-            <img id="imageElement" src="{{ url_for('video_feed') }}">
-            <canvas id="canvasElement"></canvas>
-        </div> -->
-
-
-        <label for="userInput">Enter text to be evaluated:</label>
-        <input type="text" id="userInput" name="userInput"><br><br>
-        <input type="submit" value="Submit" id = "submit">
-        <br><br>
-        <div id="result">
-            AAAAAA
+        <div class="content">
+            <h1>Sentiment Analysis</h1>
+            <label class="custom-field three">
+                <input type="text" id="userInput" name="userInput" placeholder="&nbsp;" class="textBox" data-lpignore="true">
+                <span class="placeholder">Enter Text</span>
+                <span class="border"></span>
+            </label>
+            <label class="custom-field">
+                <input type="button" value="Submit" id = "submit" style = "font-family: Noto Serif Display"> 
+            </label>
+            
+            <br><br>
+            <div id="result">
+                &nbsp;
+            </div>
+            
+            </div>
         </div>
-
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g=" crossorigin="anonymous"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-        <h4 style="font-family: Tahoma">Project by Aniket Jain</h4>
+        <h4 style="font-family: Noto Serif Display"></h4>
         <br>
-        <h4><a style="font-family: Tahoma" href="https://github.com/jain-aniket/sentiment-flask">Github</a></h4>
+        <h4>Project by Aniket Jain &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a style="font-family: Noto Serif Display" href="https://github.com/jain-aniket/sentiment-flask">Github</a></h4>
     </body>
 </html>

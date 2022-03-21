@@ -1,8 +1,6 @@
 $(document).ready(function(){
   let namespace = "/test";
-  // let video = document.querySelector("#videoElement");
-  // let canvas = document.querySelector("#canvasElement");
-  // let ctx = canvas.getContext('2d');
+
   let userInput = document.querySelector("#userInput");
   let submitButton = document.querySelector("#submit")
   submitButton.onclick = function() {sendInput()};
@@ -14,11 +12,6 @@ $(document).ready(function(){
     if (!localMediaStream) {
       return;
     }
-
-    // ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight, 0, 0, 300, 150);
-
-    // let dataURL = canvas.toDataURL('image/jpeg');
-    // socket.emit('input image', dataURL);
   }
 
   socket.on('connect', function() {
