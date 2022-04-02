@@ -19,9 +19,11 @@
         }
 
         body {
-            background-color: rgb(207, 229, 248);
+            /* background-color: rgb(207, 229, 248); Light blue, but stronger than aliceblue */
+            background-color: #17334d; /* Dark blue for dark theme */ 
             font-family: 'Noto Serif Display', serif;
         }
+
 
         .content{
             height: 100vh;
@@ -69,12 +71,16 @@
             -ms-appearance: none;
             -moz-appearance: none;
             appearance: none;
-            background: #f2f2f2;
+            /* background: #f2f2f2; */
+            background: #1c3f5f; /* input field background color FOR DARK THEME, LIGHT ^ */
             padding: var(--field-padding);
             border-radius: 3px;
             width: 500px;
             outline: none;
             font-size: 14px;
+            font-family: 'Noto Serif Display', serif; /* font for user-typed text */
+            caret-color: #aaa; /* dark theme caret color */
+            color: #aaa; /* dark theme text color */
         }
 
         .custom-field .placeholder {
@@ -99,13 +105,16 @@
         .custom-field input:not(:placeholder-shown) + .placeholder {
             top: -10px;
             font-size: 10px;
-            color: #222;
+            /* color: #222; */
+            --draw-color: #aaa; /* placeholder font color FOR DARK THEME, LIGHT ^ */
+
         }
 
         /* THREE */
         .custom-field.three {
             --draw-duration: 0.1s;
-            --draw-color: #222;
+            /* --draw-color: #222; */
+            --draw-color: #aaa; /* line color FOR DARK THEME, LIGHT ^ */
             --draw-line-width: 2px;
             --draw-easing: linear;
         }
@@ -186,18 +195,18 @@
     
     <body>
         <div class="content">
-            <h1>Sentiment Analysis</h1>
+            <h1 style="color: #aaa">Sentiment Analysis</h1>  <!-- color: #aaa for dark theme  -->
             <label class="custom-field three">
                 <input type="text" id="userInput" name="userInput" placeholder="&nbsp;" class="textBox" data-lpignore="true">
                 <span class="placeholder">Enter Text</span>
                 <span class="border"></span>
             </label>
             <label class="custom-field">
-                <input type="button" value="Submit" id = "submit" style = "font-family: Noto Serif Display"> 
+                <input type="button" value="Submit" id = "submit" style = "font-family: Noto Serif Display; color: #aaa"> <!-- color: #aaa for dark theme  -->
             </label>
             
             <br><br>
-            <div id="result">
+            <div id="result" style = "color: #aaa; font-size: x-large;"> <!-- color: #aaa for dark theme  -->
                 &nbsp;
             </div>
             
@@ -209,6 +218,6 @@
         <script src="{{ url_for('static', filename='js/main.js') }}"></script>
         <h4 style="font-family: Noto Serif Display"></h4>
         <br>
-        <h4>Project by Aniket Jain &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a style="font-family: Noto Serif Display" href="https://github.com/jain-aniket/sentiment-flask">Github</a></h4>
+        <h4 style="font-family: Noto Serif Display; color: #aaa">Project by Aniket Jain &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<a style="font-family: Noto Serif Display; color: #aaa; text-decoration-line: none;" href="https://github.com/jain-aniket/sentiment-flask">Github</a></h4> <!-- color: #aaa for dark theme  -->
     </body>
 </html>
