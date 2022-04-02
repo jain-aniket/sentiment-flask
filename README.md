@@ -1,1 +1,2 @@
 # sentiment-flask
+This project analyzes the general positive or negative sentiment of a text sample. User input in the site is classified into either postitive or negative sentiment, and the result is displayed to the user. 

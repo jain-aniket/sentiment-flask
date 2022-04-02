@@ -77,15 +77,7 @@ def video_feed(userID):
 	sys.stdout.flush()
 	"""Video streaming route. Put this in the src attribute of an img tag."""
 
-	
-
-
 	return Response(gen(userID), mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-
-
-
 
 if __name__ == '__main__':
 	socketio.run(app)
